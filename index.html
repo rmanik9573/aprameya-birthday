@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aprameya! 🚀</title>
+    <style>
+        :root {
+            --bg-color: #0f111a;
+            --card-bg: rgba(25, 30, 46, 0.85);
+            --accent: #00ff88;
+            --text-main: #f0f2f5;
+            --text-muted: #94a3b8;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- Intro Overlay Container --- */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #121629, #1f1a3a);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+        #intro-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #balloon-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .intro-title {
+            font-size: 2.2rem;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+        }
+        .intro-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .single-balloon {
+            width: 140px;
+            height: 175px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            position: relative;
+            box-shadow: inset -15px -15px 0px rgba(0,0,0,0.25), 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+            animation: floatSingleBalloon 2s ease-in-out infinite alternate;
+        }
+        .single-balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 30px;
+            background: rgba(255,255,255,0.4);
+        }
+        .single-balloon:hover {
+            transform: scale(1.08);
+        }
+        .single-balloon.pop-anim {
+            transform: scale(1.4);
+            opacity: 0;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        @keyframes floatSingleBalloon {
+            0% { transform: translateY(0px) rotate(-2deg); }
+            100% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        #star-stage {
+            display: none;
+            position: absolute;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+        .star-greeting {
+            font-size: 2.5rem;
+            color: #ffdf00;
+            text-shadow: 0 0 30px rgba(255, 223, 0, 0.8);
+            margin-bottom: 20px;
+        }
+        .star {
+            position: absolute;
+            font-size: 2rem;
+            animation: starBurst 1.5s ease-out forwards;
+        }
+        @keyframes starBurst {
+            0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
+            100% { transform: translate(var(--dx), var(--dy)) scale(1.5); opacity: 0; }
+        }
+
+        #cake-stage {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+        .intro-cake {
+            font-size: 7rem;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .intro-cake:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Main Website Container --- */
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        #main-content.show {
+            display: block;
+            opacity: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #1b2838, #0f111a);
+            border-bottom: 2px solid rgba(0, 255, 136, 0.2);
+        }
+        h1 {
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin: 0;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--accent);
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            margin-bottom: 25px;
+            margin-top: 40px;
+        }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Countdown */
+        .countdown-box {
+            text-align: center;
+            background: linear-gradient(135deg, #1a233a, #101624);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .timer-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .time-block {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--accent);
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 60px;
+        }
+        .time-val {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        .time-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #192130;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-caption {
+            padding: 10px;
+            font-size: 0.85rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+        }
+        .lightbox-text {
+            color: #fff;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 500px;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Envelopes */
+        .envelope-card {
+            background: #192130;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+        .envelope-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #222d42, #192130);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .envelope-header:hover {
+            background: linear-gradient(135deg, #2a3852, #1f2a3e);
+        }
+        .year-tag {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        .envelope-prompt {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .envelope-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.3s ease;
+            background: rgba(15, 17, 26, 0.5);
+            padding: 0 20px;
+            border-top: 1px solid transparent;
+        }
+        .envelope-card.open .envelope-body {
+            max-height: 300px;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .envelope-card.open .arrow {
+            transform: rotate(180deg);
+        }
+        .arrow {
+            transition: transform 0.3s;
+        }
+
+        /* Minigames */
+        .pack-box {
+            text-align: center;
+            background: linear-gradient(145deg, #121c2e, #1e3a5f);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(0, 255, 136, 0.4);
+        }
+        .player-card {
+            display: none;
+            background: #111;
+            padding: 15px;
+            border-radius: 12px;
+            max-width: 280px;
+            margin: 15px auto;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.4);
+            animation: popIn 0.5s ease;
+        }
+        .player-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .meme-box {
+            text-align: center;
+            background: linear-gradient(145deg, #2e122b, #5f1e42);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 0, 128, 0.4);
+        }
+        .meme-card {
+            display: none;
+            background: #111;
+            padding: 15px;
+            border-radius: 12px;
+            max-width: 280px;
+            margin: 15px auto;
+            border: 2px dashed #ff0080;
+            box-shadow: 0 0 25px rgba(255, 0, 128, 0.4);
+            animation: popIn 0.5s ease;
+        }
+        .meme-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Calculator */
+        .calc-box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        .slider-group {
+            margin-bottom: 15px;
+            text-align: left;
+            background: rgba(25, 30, 46, 0.5);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+        .slider-val {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        /* Terminal */
+        .terminal {
+            background: #090a0f;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #00ff88;
+            text-align: left;
+            margin: 30px 0;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+        }
+        .terminal-output {
+            min-height: 80px;
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            white-space: pre-line;
+            line-height: 1.4;
+        }
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .terminal-input-line input {
+            background: transparent;
+            border: none;
+            color: #00ff88;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            width: 100%;
+        }
+
+        .interactive-box {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .feature-box {
+            flex: 1;
+            min-width: 280px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #111;
+            color: #fff;
+            width: 70%;
+            margin-top: 10px;
+        }
+        .vault-content {
+            display: none;
+            margin-top: 15px;
+        }
+        .vault-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 2px solid var(--accent);
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: #0f111a;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+            margin-top: 10px;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #00cc6a;
+        }
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hidden audio elements -->
+    <audio id="popSound" src="ballon.mp3" preload="auto"></audio>
+    <audio id="starSound" src="star.mp3" preload="auto"></audio>
+    <audio id="hbdMusic" src="hbd.mp3" loop preload="auto"></audio>
+
+    <!-- --- Multi-Stage Intro Overlay --- -->
+    <div id="intro-overlay">
+        <div id="balloon-stage">
+            <h2 class="intro-title">🎈 Tap Balloon <span id="currentBalloonNum">1</span> / 18</h2>
+            <p class="intro-subtitle">Pop all 18 balloons one by one!</p>
+            <div class="single-balloon" id="activeBalloon" onclick="popSingleBalloon()">
+                <span id="balloonText">1</span>
+            </div>
+        </div>
+
+        <div id="star-stage">
+            <div class="star-greeting">✨ HAPPY BIRTHDAY APRAMEYA MANDAL! ✨</div>
+            <p style="color:var(--text-muted); font-size:1.1rem;">Turning 18 in style!</p>
+        </div>
+
+        <div id="cake-stage">
+            <h2 class="intro-title" id="cakeInstruction">🎂 Click the Cake to Blow Out the Candles!</h2>
+            <div class="intro-cake" id="introCake" onclick="blowIntroCandles()">🎂🔥</div>
+            <p style="color: var(--text-muted); font-size: 0.95rem;" id="cakeSubText">Make a wish and click the flame.</p>
+        </div>
+    </div>
+
+    <!-- --- Main Website Content --- -->
+    <div id="main-content">
+        <header>
+            <h1>Happy Birthday, Aprameya Mandal! 🎉</h1>
+            <p class="subtitle">RKMV Narendrapur Tech Squad Co-Founder & Legend — Great News for Turning 18! 🚀</p>
+        </header>
+
+        <div class="container">
+            
+            <!-- Global Audio Track Bar -->
+            <div class="card" style="text-align: center; background: linear-gradient(135deg, #1b2838, #161f2e); border: 1px solid rgba(0,255,136,0.3);">
+                <h3>🎵 Additional Audio Track</h3>
+                <audio class="song" id="bgMusic" loop>
+                    <source src="music.mp3" type="audio/mpeg">
+                    Your browser isn't invited for super fun audio time.
+                </audio>
+                <button class="btn" id="musicBtn" onclick="toggleMusic()">Play 'Tera Zikr' 🎧</button>
+            </div>
+
+            <!-- Countdown -->
+            <div class="countdown-box">
+                <h3>⏳ Time Until June 24th (12:00 AM)</h3>
+                <div class="timer-grid">
+                    <div class="time-block"><div class="time-val" id="days">00</div><div class="time-label">Days</div></div>
+                    <div class="time-block"><div class="time-val" id="hours">00</div><div class="time-label">Hours</div></div>
+                    <div class="time-block"><div class="time-val" id="mins">00</div><div class="time-label">Mins</div></div>
+                    <div class="time-block"><div class="time-val" id="secs">00</div><div class="time-label">Secs</div></div>
+                </div>
+            </div>
+
+            <!-- Intro Note -->
+            <div class="card">
+                <h3>👑 To the Common-Man Millionaire & Tech Guru</h3>
+                <p>From telling legendary stories about visiting America back in Class 8 to keeping it completely grounded like a common man—no showing off, just pure vibes. Whether it's concept clarity, teaching physics/math, or dropping sick dance moves on school tours that leave everyone smiling, you're one of a kind!</p>
+            </div>
+
+            <!-- Photo Gallery Grid -->
+            <div class="section-title">📸 Interactive Memory Photo Gallery</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">Click any photo to inspect and view memory details!</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox('exhibition.jpeg', '2022 RKMV Computer Department Exhibition: Where the legendary tech squad bonded!')">
+                    <img src="exhibition.jpeg" alt="Exhibition">
+                    <div class="gallery-caption">🖥️ The Exhibition Days</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('vizag.jpeg', 'Vizag Tour Days: Unforgettable moments, scenic coastal views, and legendary squad travels!')">
+                    <img src="vizag.jpeg" alt="Vizag Tour">
+                    <div class="gallery-caption">💻 Vizag Tour Days</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('dslr.jpg', 'DSLR Photography Sessions: Learning camera angles, capturing elite shots, and exploring visual artistry!')">
+                    <img src="dslr.jpg" alt="Photography">
+                    <div class="gallery-caption">📷 DSLR Photography</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('muri.jpeg', 'Midnight Muri Makha Feast: Crafted with mustard oil, Maggi masala, and Dragon Ball Z Uno rules!')">
+                    <img src="muri.jpeg" alt="Snacks">
+                    <div class="gallery-caption">🥣 Muri Makha Feast</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('class10.jpeg', 'Class 10 Memories: The foundation years before moving to senior secondary and hostel life!')">
+                    <img src="class10.jpeg" alt="Class 10">
+                    <div class="gallery-caption">🏫 Class 10 Memories</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('madhyamik.jpeg', 'Madhyamik Result Days: Celebrating incredible academic milestones and success!')">
+                    <img src="madhyamik.jpeg" alt="Madhyamik">
+                    <div class="gallery-caption">🎓 Madhyamik Result Days</div>
+                </div>
+            </div>
+
+            <!-- Lightbox Modal -->
+            <div class="lightbox" id="lightboxModal" onclick="closeLightbox()">
+                <span class="close-lightbox">&times;</span>
+                <img id="lightboxImg" src="" alt="Zoomed Photo">
+                <div class="lightbox-text" id="lightboxText"></div>
+            </div>
+
+            <!-- Envelope Timeline -->
+            <div class="section-title">📬 Memory Envelopes (Tap to Open)</div>
+
+            <div class="envelope-card" onclick="toggleEnvelope(this)">
+                <div class="envelope-header">
+                    <span class="year-tag">💌 2019 - 2022: The RKMV Spark</span>
+                    <span class="envelope-prompt">Click to open <span class="arrow">▼</span></span>
+                </div>
+                <div class="envelope-body">
+                    <p>The RKMV journey begins. The friendship officially ignited during the <strong>2022 School Exhibition</strong> in the computer department alongside Dhara, Aditya, and Souhardya. Tech love and shared computer passion brought the core squad together!</p>
+                </div>
+            </div>
+
+            <div class="envelope-card" onclick="toggleEnvelope(this)">
+                <div class="envelope-header">
+                    <span class="year-tag">💌 2023 - 2024: The Techy Team Era</span>
+                    <span class="envelope-prompt">Click to open <span class="arrow">▼</span></span>
+                </div>
+                <div class="envelope-body">
+                    <p>The Golden Era of building innovations in the computer department. Even after Dhara left post-Class 10, online video calls kept the crew locked in—alongside Chandu bringing total Punjabi & chapri vibes into the mix!</p>
+                </div>
+            </div>
+
+            <div class="envelope-card" onclick="toggleEnvelope(this)">
+                <div class="envelope-header">
+                    <span class="year-tag">💌 Class 11 Hostel Days & Cinema</span>
+                    <span class="envelope-prompt">Click to open <span class="arrow">▼</span></span>
+                </div>
+                <div class="envelope-body">
+                    <p>Peak hostel memories: HP Victus laptop sessions, watching <em>Robinhood</em> and making fun of Sreeleela, turning into a cinephile with <em>Dhurandhar</em> and <em>Sita Ramam</em>, inventing wild <strong>Dragon Ball Z Uno rules</strong>, eating Muri Makha, and learning photography on your DSLR during the school tour!</p>
+                </div>
+            </div>
+
+            <!-- FC Mobile Minigame -->
+            <div class="pack-box">
+                <h3>⚽ FC Mobile Transfer Market Pack</h3>
+                <p>Spend 10,000 Gems to open a special birthday player pack for Aprameya Mandal!</p>
+                <button class="btn" onclick="openPack()">Open Pack 🎒</button>
+                <div class="player-card" id="playerCard">
+                    <img src="messi.jpeg" alt="Messi Player Card">
+                    <p style="font-size:0.85rem; margin-top:8px; color:var(--accent); font-weight:bold;">⚡ ICON ARAMEYA (99 OVR)</p>
+                </div>
+            </div>
+
+            <!-- Meme Pack Minigame -->
+            <div class="meme-box">
+                <h3>🤡 Ultimate RKMV Meme Pack Drop</h3>
+                <p>Open your daily emergency meme drop for maximum hostel laughs!</p>
+                <button class="btn" onclick="openMemePack()" style="background: #ff0080; color: white;">Open Meme Pack 📦</button>
+                <div class="meme-card" id="memeCard">
+                    <h4 style="color: #ff0080; margin: 0 0 10px 0;">🔥 HOSTEL STICKER DROP</h4>
+                    <img src="sticker1.gif" alt="Sticker 1">
+                    <img src="sticker2.gif" alt="Sticker 2" style="margin-top: 8px;">
+                </div>
+            </div>
+
+            <!-- Muri Makha Slider Calculator -->
+            <div class="calc-box">
+                <h3>🥣 Ultimate Hostel Muri Makha Customizer</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">Slide each ingredient to build your exact midnight hostel proportion:</p>
+                
+                <div class="slider-group">
+                    <div class="slider-label"><span>Puffed Rice (Muri)</span> <span id="val-muri" class="slider-val">2 packets</span></div>
+                    <input type="range" min="1" max="10" step="1" value="2" oninput="updateCustomRecipe('muri', this.value, ' packet(s)')">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label"><span>Chanachur / Jhuri Bhaja (75g each)</span> <span id="val-chanachur" class="slider-val">1 packet</span></div>
+                    <input type="range" min="0" max="6" step="1" value="1" oninput="updateCustomRecipe('chanachur', this.value, ' packet(s)')">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label"><span>Mustard Oil</span> <span id="val-oil" class="slider-val">2 tbsp</span></div>
+                    <input type="range" min="0" max="10" step="1" value="2" oninput="updateCustomRecipe('oil', this.value, ' tbsp')">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label"><span>Secret Maggi Masala Packets</span> <span id="val-maggi" class="slider-val">1 packet</span></div>
+                    <input type="range" min="0" max="5" step="1" value="1" oninput="updateCustomRecipe('maggi', this.value, ' packet(s)')">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label"><span>Schezwan Sauce</span> <span id="val-schezwan" class="slider-val">1 tbsp</span></div>
+                    <input type="range" min="0" max="5" step="0.5" value="1" oninput="updateCustomRecipe('schezwan', this.value, ' tbsp')">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label"><span>King Chilli (Naga Morich)</span> <span id="val-kingchilli" class="slider-val">0.5 tbsp</span></div>
+                    <input type="range" min="0" max="3" step="0.5" value="0.5" oninput="updateCustomRecipe('kingchilli', this.value, ' tbsp')">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label"><span>Chopped Chillies & Onions</span> <span id="val-chillies" class="slider-val">4 pieces</span></div>
+                    <input type="range" min="0" max="15" step="1" value="4" oninput="updateCustomRecipe('chillies', this.value, ' pieces')">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label"><span>Mango Pickle (Achar) Oil</span> <span id="val-pickle" class="slider-val">1 tsp</span></div>
+                    <input type="range" min="0" max="5" step="1" value="1" oninput="updateCustomRecipe('pickle', this.value, ' tsp')">
+                </div>
+
+                <div id="muriResult" style="margin-top: 20px; color: var(--text-main); font-size: 0.95rem; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border: 1px solid rgba(0,255,136,0.3); text-align: left; line-height: 1.5;"></div>
+            </div>
+
+            <!-- Mock Terminal -->
+            <div class="terminal">
+                <div style="font-size:0.8rem; color:#666; margin-bottom:5px;">RKMV_TERMINAL v2.0 - Type 'help' for commands</div>
+                <div class="terminal-output" id="termOutput">Type 'help' and press Enter below...</div>
+                <div class="terminal-input-line">
+                    <span>guest@rkmv:~$</span>
+                    <input type="text" id="termInput" onkeydown="handleTerminal(event)" placeholder="type a command...">
+                </div>
+            </div>
+
+            <!-- Secret Vault -->
+            <div class="card" style="text-align: center;">
+                <h3>🔐 Secret Vault</h3>
+                <p style="font-size:0.9rem; color:var(--text-muted);">Hint: Your favourite actress remember?</p>
+                <input type="text" id="passcode" placeholder="Enter actress name...">
+                <br>
+                <button class="btn" onclick="openVault()">Unlock Vault</button>
+                <div class="vault-content" id="vaultMessage">
+                    🚀 Vault Unlocked: Co-founder chair is permanently reserved for Aprameya Mandal!<br>
+                    <img src="handeercel.jpeg" alt="Hande Ercel">
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>Built for Aprameya Mandal with pure friendship, Muri Makha energy, and HP Victus power! 🥂</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- Intro Sequence Logic ---
+        let currentBalloonIndex = 1;
+        const totalBalloonsToPop = 18;
+        const balloonColors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#9b59b6', '#ff6b81', '#3742fa', '#2f3542', '#eccc68'];
+
+        function playPopSound() {
+            const popAudio = document.getElementById('popSound');
+            if (popAudio) {
+                popAudio.currentTime = 0;
+                popAudio.play().catch(e => {});
+            }
+        }
+
+        function playStarSound() {
+            const starAudio = document.getElementById('starSound');
+            if (starAudio) {
+                starAudio.currentTime = 0;
+                starAudio.play().catch(e => {});
+            }
+        }
+
+        function popSingleBalloon() {
+            playPopSound();
+            const balloonEl = document.getElementById('activeBalloon');
+            balloonEl.classList.add('pop-anim');
+
+            setTimeout(() => {
+                currentBalloonIndex++;
+                if (currentBalloonIndex > totalBalloonsToPop) {
+                    triggerStarStage();
+                } else {
+                    document.getElementById('currentBalloonNum').textContent = currentBalloonIndex;
+                    document.getElementById('balloonText').textContent = currentBalloonIndex;
+                    balloonEl.style.backgroundColor = balloonColors[(currentBalloonIndex - 1) % balloonColors.length];
+                    balloonEl.classList.remove('pop-anim');
+                }
+            }, 200);
+        }
+
+        function triggerStarStage() {
+            playStarSound();
+            document.getElementById('balloon-stage').style.display = 'none';
+            const starStage = document.getElementById('star-stage');
+            starStage.style.display = 'block';
+
+            for (let i = 0; i < 30; i++) {
+                const s = document.createElement('div');
+                s.className = 'star';
+                s.textContent = ['⭐', '🌟', '✨', '🎈', '🎉'][Math.floor(Math.random() * 5)];
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 150 + Math.random() * 250;
+                s.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+                s.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+                s.style.left = '50%';
+                s.style.top = '40%';
+                starStage.appendChild(s);
+            }
+
+            setTimeout(() => {
+                starStage.style.display = 'none';
+                document.getElementById('cake-stage').style.display = 'flex';
+            }, 1600);
+        }
+
+        function blowIntroCandles() {
+            playPopSound();
+            const cake = document.getElementById('introCake');
+            const instruction = document.getElementById('cakeInstruction');
+            const sub = document.getElementById('cakeSubText');
+            
+            cake.textContent = "🎂✨💨";
+            instruction.textContent = "🎉 Candles Blown Out Successfully! 🎉";
+            sub.textContent = "Loading Main Website for Aprameya Mandal...";
+
+            setTimeout(() => {
+                const overlay = document.getElementById('intro-overlay');
+                const main = document.getElementById('main-content');
+                overlay.classList.add('hidden');
+                main.classList.add('show');
+
+                const hbdMusic = document.getElementById('hbdMusic');
+                if (hbdMusic) {
+                    hbdMusic.play().catch(e => {});
+                }
+            }, 1200);
+        }
+
+        // Photo Lightbox Functions
+        function openLightbox(imgSrc, captionText) {
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImg');
+            const text = document.getElementById('lightboxText');
+            img.src = imgSrc;
+            text.textContent = captionText;
+            modal.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').style.display = 'none';
+        }
+
+        function toggleEnvelope(element) {
+            element.classList.toggle('open');
+        }
+
+        function openPack() {
+            const card = document.getElementById('playerCard');
+            card.style.display = 'block';
+        }
+
+        function openMemePack() {
+            const meme = document.getElementById('memeCard');
+            meme.style.display = 'block';
+        }
+
+        const recipeValues = {
+            muri: 2,
+            chanachur: 1,
+            oil: 2,
+            maggi: 1,
+            schezwan: 1,
+            kingchilli: 0.5,
+            chillies: 4,
+            pickle: 1
+        };
+
+        function updateCustomRecipe(key, value, unit) {
+            recipeValues[key] = value;
+            document.getElementById(`val-${key}`).textContent = value + unit;
+            
+            let text = `<strong>🧪 Custom Muri Makha Formula for Aprameya:</strong><br>`;
+            let parts = [];
+            
+            if (recipeValues.muri > 0) parts.push(`${recipeValues.muri} packet(s) Puffed Rice (Muri)`);
+            if (recipeValues.chanachur > 0) parts.push(`${recipeValues.chanachur} packet(s) Chanachur/Jhuri Bhaja (75g)`);
+            if (recipeValues.oil > 0) parts.push(`${recipeValues.oil} tbsp Mustard Oil`);
+            if (recipeValues.maggi > 0) parts.push(`${recipeValues.maggi} packet(s) Maggi Masala`);
+            if (recipeValues.schezwan > 0) parts.push(`${recipeValues.schezwan} tbsp Schezwan Sauce`);
+            if (recipeValues.kingchilli > 0) parts.push(`${recipeValues.kingchilli} tbsp King Chilli (Naga)`);
+            if (recipeValues.chillies > 0) parts.push(`${recipeValues.chillies} chopped Chillies & Onions`);
+            if (recipeValues.pickle > 0) parts.push(`${recipeValues.pickle} tsp Mango Pickle Oil`);
+            
+            text += parts.join(" + ") + " 🚀";
+            document.getElementById('muriResult').innerHTML = text;
+        }
+
+        window.onload = function() {
+            document.getElementById('activeBalloon').style.backgroundColor = balloonColors[0];
+            updateCustomRecipe('muri', 2, ' packet(s)');
+            updateCustomRecipe('chanachur', 1, ' packet(s)');
+            updateCustomRecipe('oil', 2, ' tbsp');
+            updateCustomRecipe('maggi', 1, ' packet');
+            updateCustomRecipe('schezwan', 1, ' tbsp');
+            updateCustomRecipe('kingchilli', 0.5, ' tbsp');
+            updateCustomRecipe('chillies', 4, ' pieces');
+            updateCustomRecipe('pickle', 1, ' tsp');
+        };
+
+        function handleTerminal(e) {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('termInput');
+                const output = document.getElementById('termOutput');
+                const val = input.value.trim().toLowerCase();
+                
+                let res = `> ${val}\n`;
+                if (val === 'help') {
+                    res += "Available commands: cofounder, fc, muri, rkmv, pm, clear";
+                } else if (val === 'cofounder') {
+                    res += "SUCCESS: Co-founder seat locked for Aprameya Mandal.";
+                } else if (val === 'fc') {
+                    res += "ALERT: Messi stats checked. 99 Dribbling confirmed.";
+                } else if (val === 'muri') {
+                    res += "SNACK STATUS: Muri Makha protocol active with Dragon Ball Z Uno rules.";
+                } else if (val === 'rkmv') {
+                    res += "INSTITUTION: RKMV Narendrapur Computer Department Legend Status Verified.";
+                } else if (val === 'pm') {
+                    res += "ACCESSING CLOUD STORAGE...\n[████████████] 100%\nALERT: Legendary School Tour Dance Video located!\nERROR: Video contains too much swag to render in text terminal.";
+                } else if (val === 'clear') {
+                    res = "";
+                } else {
+                    res += `Command not recognized: '${val}'. Type 'help' for options.`;
+                }
+                
+                output.textContent = res;
+                input.value = '';
+            }
+        }
+
+        // Toggle Tera Zikr (music.mp3) and automatically pause/resume hbdMusic
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const hbdMusic = document.getElementById('hbdMusic');
+            const btn = document.getElementById('musicBtn');
+
+            if (music.paused) {
+                music.play().catch(e => {});
+                if (hbdMusic) hbdMusic.pause(); // Pause HBD song when Tera Zikr plays
+                btn.textContent = "Pause 'Tera Zikr' ⏸️";
+            } else {
+                music.pause();
+                if (hbdMusic) hbdMusic.play().catch(e => {}); // Resume HBD song when Tera Zikr pauses
+                btn.textContent = "Play 'Tera Zikr' 🎧";
+            }
+        }
+
+        function openVault() {
+            const code = document.getElementById('passcode').value.trim().toLowerCase();
+            const message = document.getElementById('vaultMessage');
+            if (code === "hande erçel" || code === "hande ercel") {
+                message.style.display = "block";
+            } else {
+                alert("Incorrect passcode! Hint: Your favourite actress remember?");
+            }
+        }
+
+        // --- Precise Countdown Timer to June 24th, 12:00 AM ---
+        setInterval(() => {
+            const now = new Date();
+            let targetYear = now.getFullYear();
+            let targetDate = new Date(targetYear, 5, 24, 0, 0, 0); // June 24th
+            
+            if (now.getTime() > targetDate.getTime()) {
+                targetDate = new Date(targetYear + 1, 5, 24, 0, 0, 0);
+            }
+
+            const diff = targetDate.getTime() - now.getTime();
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('mins').textContent = String(mins).padStart(2, '0');
+            document.getElementById('secs').textContent = String(secs).padStart(2, '0');
+        }, 1000);
+    </script>
+</body>
+</html>
