@@ -577,19 +577,18 @@
 
         <div class="container">
             
-           <!-- AFTER (Updated Code) -->
-<!-- Global Audio Track Bar -->
-<div class="card" style="text-align: center; background: linear-gradient(135deg, #1b2838, #161f2e); border: 1px solid rgba(0,255,136,0.3);">
-    <h3>🎵 Additional Audio Track</h3>
-    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; font-style: italic; line-height: 1.4;">
-        "He used to tell me that he has listened to only this song ('Tera Zikr') more times than I have ever listened to any other song combined from childhood!" 🎧✨
-    </p>
-    <audio class="song" id="bgMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
-        Your browser isn't invited for super fun audio time.
-    </audio>
-    <button class="btn" id="musicBtn" onclick="toggleMusic()">Play my favourite song 🎧</button>
-</div>
+          <!-- Global Audio Track Bar -->
+            <div class="card" style="text-align: center; background: linear-gradient(135deg, #1b2838, #161f2e); border: 1px solid rgba(0,255,136,0.3);">
+                <h3>🎵 His Favourite Song</h3>
+                <p id="songQuote" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; font-style: italic; line-height: 1.4; opacity: 0; max-height: 0; overflow: hidden; transition: opacity 0.5s ease, max-height 0.5s ease;">
+                    "He used to tell me that he has listened to only this song ('Tera Zikr') more times than I have ever listened to any other song combined from childhood!" 🎧✨
+                </p>
+                <audio class="song" id="bgMusic" loop>
+                    <source src="music.mp3" type="audio/mpeg">
+                    Your browser isn't invited for super fun audio time.
+                </audio>
+                <button class="btn" id="musicBtn" onclick="toggleMusic()">Play his favourite song 🎧</button>
+            </div>
 
             <!-- Countdown -->
             <div class="countdown-box">
@@ -987,20 +986,27 @@ function blowIntroCandles() {
             }
         }
 
-        // Toggle Tera Zikr (music.mp3) and automatically pause/resume hbdMusic
+       // Toggle Tera Zikr (music.mp3) and automatically pause/resume hbdMusic & fade quote
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const hbdMusic = document.getElementById('hbdMusic');
             const btn = document.getElementById('musicBtn');
+            const quote = document.getElementById('songQuote');
 
             if (music.paused) {
                 music.play().catch(e => {});
                 if (hbdMusic) hbdMusic.pause(); // Pause HBD song when Tera Zikr plays
-                btn.textContent = "Pause 'Tera Zikr' ⏸️";
+                btn.textContent = "Pause his favourite song ⏸️";
+                // Show quote with smooth fade effect
+                quote.style.opacity = "1";
+                quote.style.maxHeight = "100px";
             } else {
                 music.pause();
                 if (hbdMusic) hbdMusic.play().catch(e => {}); // Resume HBD song when Tera Zikr pauses
-                btn.textContent = "Play 'Tera Zikr' 🎧";
+                btn.textContent = "Play his favourite song 🎧";
+                // Hide quote with smooth fade effect
+                quote.style.opacity = "0";
+                quote.style.maxHeight = "0";
             }
         }
 
