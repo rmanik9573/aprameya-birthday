@@ -1020,17 +1020,23 @@ function blowIntroCandles() {
             }
         }
 
-        // --- Precise Countdown Timer to June 24th, 12:00 AM ---
+        // --- Precise Countdown Timer to August 24, 2026 ---
         setInterval(() => {
             const now = new Date();
-            let targetYear = now.getFullYear();
-            let targetDate = new Date(targetYear, 5, 24, 0, 0, 0); // June 24th
-            
-            if (now.getTime() > targetDate.getTime()) {
-                targetDate = new Date(targetYear + 1, 5, 24, 0, 0, 0);
-            }
+            // Target set specifically to August 24, 2026 (Month 7 = August in JavaScript 0-indexed months)
+            let targetDate = new Date(2026, 7, 24, 0, 0, 0); 
 
             const diff = targetDate.getTime() - now.getTime();
+            
+            // If the date has passed, show zeros
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('mins').textContent = '00';
+                document.getElementById('secs').textContent = '00';
+                return;
+            }
+
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
