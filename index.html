@@ -544,6 +544,7 @@
     <audio id="popSound" src="ballon.mp3" preload="auto"></audio>
     <audio id="starSound" src="star.mp3" preload="auto"></audio>
     <audio id="hbdMusic" src="hbd.mp3" loop preload="auto"></audio>
+    <audio id="cakeSound" src="cake.mp3" preload="auto"></audio>
 
     <!-- --- Multi-Stage Intro Overlay --- -->
     <div id="intro-overlay">
@@ -845,28 +846,37 @@
             }, 1600);
         }
 
-        function blowIntroCandles() {
-            playPopSound();
-            const cake = document.getElementById('introCake');
-            const instruction = document.getElementById('cakeInstruction');
-            const sub = document.getElementById('cakeSubText');
-            
-            cake.textContent = "🎂✨💨";
-            instruction.textContent = "🎉 Candles Blown Out Successfully! 🎉";
-            sub.textContent = "Loading Main Website for Aprameya Mandal...";
+        // Change this function:
+function playCakeSound() {
+    const cakeAudio = document.getElementById('cakeSound');
+    if (cakeAudio) {
+        cakeAudio.currentTime = 0;
+        cakeAudio.play().catch(e => {});
+    }
+}
 
-            setTimeout(() => {
-                const overlay = document.getElementById('intro-overlay');
-                const main = document.getElementById('main-content');
-                overlay.classList.add('hidden');
-                main.classList.add('show');
+function blowIntroCandles() {
+    playCakeSound(); // <--- Updated from playPopSound()
+    const cake = document.getElementById('introCake');
+    const instruction = document.getElementById('cakeInstruction');
+    const sub = document.getElementById('cakeSubText');
 
-                const hbdMusic = document.getElementById('hbdMusic');
-                if (hbdMusic) {
-                    hbdMusic.play().catch(e => {});
-                }
-            }, 1200);
+    cake.textContent = "🎂✨💨";
+    instruction.textContent = "🎉 Candles Blown Out Successfully! 🎉";
+    sub.textContent = "Loading Main Website for Aprameya Mandal...";
+
+    setTimeout(() => {
+        const overlay = document.getElementById('intro-overlay');
+        const main = document.getElementById('main-content');
+        overlay.classList.add('hidden');
+        main.classList.add('show');
+
+        const hbdMusic = document.getElementById('hbdMusic');
+        if (hbdMusic) {
+            hbdMusic.play().catch(e => {});
         }
+    }, 1200);
+}
 
         // Photo Lightbox Functions
         function openLightbox(imgSrc, captionText) {
