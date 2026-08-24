@@ -783,6 +783,34 @@
                     <img src="handeercel.jpeg" alt="Hande Ercel">
                 </div>
             </div>
+            <div class="card" style="text-align: center; background: linear-gradient(135deg, #1b2838, #161f2e); border: 1px solid rgba(0,255,136,0.3);">
+    <h3>💌 Leave a Public Birthday Wish for Aprameya</h3>
+    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">Want to add your wish to the celebration? Drop it right here!</p>
+    
+    <input type="text" id="friendName" placeholder="Your Name..." style="width: 80%; max-width: 300px; display: block; margin: 0 auto 10px auto; padding: 10px; border-radius: 6px; border: 1px solid #444; background: #111; color: #fff;"><br>
+    
+    <textarea id="friendWish" placeholder="Write your birthday message here..." style="width: 80%; max-width: 300px; height: 80px; display: block; margin: 0 auto 15px auto; padding: 10px; border-radius: 6px; border: 1px solid #444; background: #111; color: #fff; resize: none;"></textarea>
+    
+    <button class="btn" onclick="sendWishToWhatsApp()">Send Wish via WhatsApp 🚀</button>
+</div>
+
+<script>
+    function sendWishToWhatsApp() {
+        const name = document.getElementById('friendName').value.trim();
+        const wish = document.getElementById('friendWish').value.trim();
+        
+        if (!name || !wish) {
+            alert("Please enter both your name and your wish!");
+            return;
+        }
+        
+        // Replace with your phone number including country code (e.g., 919876543210)
+        const myPhoneNumber = "+91 70638 92990"; 
+        const text = encodeURIComponent(`Hey! Here is my birthday wish for Aprameya:\n\nName: ${name}\nWish: ${wish}`);
+        
+        window.open(`https://wa.me/${myPhoneNumber}?text=${text}`, '_blank');
+    }
+</script>
 
         </div>
 
