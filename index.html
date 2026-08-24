@@ -804,11 +804,16 @@
             return;
         }
         
-        // Replace with your phone number including country code (e.g., 919876543210)
-        const myPhoneNumber = "9170638 92990"; 
-        const text = encodeURIComponent(`Hey! Here is my birthday wish for Aprameya:\n\nName: ${name}\nWish: ${wish}`);
+        // Built using literal string pieces with zero spaces allowed
+        const countryCode = "91";
+        const part1 = "70638";
+        const part2 = "92990";
+        const myPhoneNumber = countryCode + part1 + part2; // Result is strictly "917063892990"
         
-        window.open(`https://wa.me/${myPhoneNumber}?text=${text}`, '_blank');
+        const message = "Hey! Here is my birthday wish for Aprameya:\n\nName: " + name + "\nWish: " + wish;
+        const whatsappUrl = "https://wa.me/" + myPhoneNumber + "?text=" + encodeURIComponent(message);
+        
+        window.open(whatsappUrl, '_blank');
     }
 </script>
 
